@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My friends</title>
+    </head>
+
+    <body>
+        <a href="{% url 'friends:index' %}">Home</a>
+        <a href="{% url 'auth:index' %}">Logout</a>
+        <div>
+            <h2>Hello, {{name}}</h2>
+
+            <h4>Here's a list of your friends</h4>
+
+            {{buddy}}
+            <p>***You have no friends yet, go out more buddy!</p>
+        </div>
+
+        <div>
+            <h4>Other users not on your friend's list</h4>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Action</th>
+                <tr>
+            {% for user in everybody %}
+                    
+               
+                <tr>
+                    <td><a href='{{user.id}}'>{{user.name}}</a></td>
+                    <td>
+                        <form action='{% url 'friends:newfriend' %}', method='post'>
+                        {% csrf_token %}
+                        <input type='hidden' name='addfriend' value='{{user.id}}'>
+                        <input type='submit' name='submit' value='Add as a Friend'>
+                        </form>
+                    </td>
+        
+            {% endfor %}
+                </tr>
+            </table>
+
+        </div>
+    </body>
+</html>

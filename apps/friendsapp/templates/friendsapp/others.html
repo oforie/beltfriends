@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{user.name}}</title>
+    </head>
+
+    
+    <body>
+        <a href="{% url 'friends:index' %}">Home</a>
+        <a href="{% url 'auth:index' %}">Logout</a>
+
+        <div>
+        <h3>{{user.name}} Profile</h3>
+        </div>
+
+        <div>
+        <p>Name: {{user.name}}</p>
+        <p>Email Address: {{user.email}}</p>
+        </div>
+    </body>
+</html>
